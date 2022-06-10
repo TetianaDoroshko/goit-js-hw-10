@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -10,6 +12,7 @@ body {
   background-color: #fafafa;
   color: #212121;
   line-height: 1.5;
+  padding: 10px;
 }
 
 #search-box {
@@ -17,4 +20,29 @@ body {
   padding: 8px;
   max-width: 320px;
   margin-bottom: 16px;
+}
+.country-list {
+  padding: 0;
+  list-style: none;
+}
+.country-list-item,
+.country-card-title {
+  margin: 10px 0 10px;
+  display: flex;
+  align-items: center;
+}
+.thumb {
+  width: 30px;
+  height: auto;
+  margin-right: 10px;
+}
+.country-list-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.country-card-title {
+  font-weight: 600;
+  font-size: 30px;
 }
