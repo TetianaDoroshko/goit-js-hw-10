@@ -17,6 +17,6 @@ export function fetchCountries(name) {
       return response.json();
     })
     .catch(error => {
-      console.log(error);
+      return Promise.reject(error);
     });
 }

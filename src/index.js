@@ -22,11 +22,13 @@ function onInputSearch(event) {
   }
   fetchCountries(searchQuery)
     .then(array => {
+      console.log(array);
       if (array.length > 10) {
         Notify.info(
           'Too many matches found. Please enter a more specific name.',
           { timeout: 1500 }
         );
+        clearResult();
         return;
       }
       if (array.length > 1) {
