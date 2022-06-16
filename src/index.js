@@ -13,31 +13,35 @@ const refs = {
 
 refs.input.addEventListener('input', debounce(onInputSearch, DEBOUNCE_DELAY));
 
-function onInputSearch(event) {
+async function onInputSearch(event) {
   const searchQuery = event.target.value.trim();
 
   if (searchQuery === '') {
     clearResult();
     return;
   }
-  fetchCountries(searchQuery)
-    .then(array => {
-      console.log(array);
-      if (array.length > 10) {
-        Notify.info(
-          'Too many matches found. Please enter a more specific name.',
-          { timeout: 1500 }
-        );
-        clearResult();
-        return;
-      }
-      if (array.length > 1) {
-        renderCountryList(array);
-        return;
-      }
-      renderCountryCard(array);
-    })
-    .catch(error => console.log(error));
+  try {
+    const array = await fetchCountries(searchQuery);
+    console.log(array);
+
+    if (array.length > 10) {
+      Notify.info(
+        'Too many matches found. Please enter a more specific name.',
+        {
+          timeout: 1500,
+        }
+      );
+      clearResult();
+      return;
+    }
+    if (array.length > 1) {
+      renderCountryList(array);
+      return;
+    }
+    renderCountryCard(array);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function renderCountryList(array) {
